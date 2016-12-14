@@ -41,6 +41,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+
+        Log.i("test", "jhgjhg");
+        Intent i = new Intent(getApplicationContext(), SMService.class);
+        startService(i);
+
+        ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.SEND_SMS},1);
+
         Log.i("test", "jhgjhg");
         pref = getApplicationContext().getSharedPreferences("MyPref", 0); // 0 - for private mode
         editor = pref.edit();
@@ -80,11 +89,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
-        Intent i = new Intent(getApplicationContext(), SMService.class);
-        startService(i);
-
-       ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.SEND_SMS},1);
 
 
     }

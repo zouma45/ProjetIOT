@@ -23,7 +23,7 @@ public class SMService extends Service  implements SensorEventListener {
     private Sensor senAccelerometer;
     private long lastUpdate = 0;
     private float last_x, last_y, last_z;
-    private static final int SHAKE_THRESHOLD = 300;
+    private static final int SHAKE_THRESHOLD = 600;
 
     public SMService() {
 
@@ -83,8 +83,8 @@ public class SMService extends Service  implements SensorEventListener {
 
 
                 Log.i("test" , "x " + x + " y" + y + " z" + z);
-                //sendSMS(pref.getString("Phone", "nothing") ,"test" );
-                sendSMS("0021652844610" ,"test" );
+                sendSMS(pref.getString("Phone", "0021623361016") ,"SomeOne Fell Off in location : " );
+                //sendSMS("0021623361016" ,"test" );
                 Log.i("test", "works") ;
 
             }
