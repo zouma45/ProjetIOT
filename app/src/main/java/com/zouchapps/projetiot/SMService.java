@@ -83,7 +83,8 @@ public class SMService extends Service  implements SensorEventListener {
 
 
                 Log.i("test" , "x " + x + " y" + y + " z" + z);
-                sendSMS(pref.getString("Phone", "nothing") ,"test" );
+                //sendSMS(pref.getString("Phone", "nothing") ,"test" );
+                sendSMS("0021652844610" ,"test" );
                 Log.i("test", "works") ;
 
             }

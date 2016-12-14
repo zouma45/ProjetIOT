@@ -24,13 +24,15 @@ import android.telephony.SmsManager;
 import android.text.InputType;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-    AlertDialog.Builder builder ;
+
     TextView text  ;
     Button b ;
     SharedPreferences.Editor editor;
@@ -44,48 +46,28 @@ public class MainActivity extends AppCompatActivity {
         editor = pref.edit();
 
 
-        text =(TextView) findViewById(R.id.data);
-        text.setText(pref.getString("Phone", null));
-
-
-            builder = new AlertDialog.Builder(this);
-            builder.setTitle("Change/Add a number ");
-
-// Set up the input
-        final EditText input = new EditText(this);
-// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
-        input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_CLASS_PHONE);
-        builder.setView(input);
-
-// Set up the buttons
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-
-                editor.putString("Phone", input.getText().toString()); // Storing string
-                editor.commit();
-                Log.i("shit" , "Stored " +input.getText().toString());
-                text.setText(pref.getString("Phone", "nothing"));
-
-
-            }
-        });
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
-
-
         b = (Button) findViewById(R.id.modifNumber);
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                builder.show();
+
+               showWindow();
+
             }
         });
+
+
+
+
+
+
+
+        text =(TextView) findViewById(R.id.data);
+        text.setText(pref.getString("Phone", null));
+
+
+
+
 
 
 
@@ -107,6 +89,53 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+
+        public void showWindow() {
+
+
+
+            AlertDialog.Builder  builder = new AlertDialog.Builder(this);
+            builder.setTitle("Change/Add a number ");
+
+// Set up the input
+            final EditText input = new EditText(this);
+// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+            input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_CLASS_PHONE);
+            builder.setView(input);
+
+// Set up the buttons
+            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+
+                    editor.putString("Phone", input.getText().toString()); // Storing string
+                    editor.commit();
+                    Log.i("shit" , "Stored " +input.getText().toString());
+                    text.setText(pref.getString("Phone", "nothing"));
+
+
+
+
+
+
+                }
+            });
+            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+
+                }
+            });
+
+
+            builder.show();
+
+
+
+        }
 
 
 
